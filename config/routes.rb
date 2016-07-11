@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   resources :users
   resources :sessions, only: [:new, :create, :edit, :destroy]  
+  
 end
 
   # doの後の get 'sessions/new'削除（7.2）
