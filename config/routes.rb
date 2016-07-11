@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   get    'signup', to: 'users#new'
   get    'login' , to: 'sessions#new'
   post   'login' , to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'  
+  delete 'logout', to: 'sessions#destroy'
+  
+  get 'edit', to: 'sessions#edit'  
   
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]  
+  resources :sessions, only: [:new, :create, :edit, :destroy]  
 end
 
   # doの後の get 'sessions/new'削除（7.2）
