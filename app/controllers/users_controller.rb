@@ -18,7 +18,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if @user = current_user
+    @user = User.find(params[:id])
+    
+    if @user == current_user
       render 'edit'
     else
       redirect_to @user
