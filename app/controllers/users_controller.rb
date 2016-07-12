@@ -18,6 +18,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if @user = current_user
+      render 'edit'
+    else
+      redirect_to @user
+    end
   end
 
   def update
