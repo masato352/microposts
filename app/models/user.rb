@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
   # プロファイルとエリア
   validates :profile , length: { maximum: 50 } , presence: false
   validates :area , length: { maximum: 10 } , presence: false  
+  
+  # 8.2で追加
+  has_many :microposts  
 end
