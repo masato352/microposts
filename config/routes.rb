@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   resources :microposts
   
+  # 9.4
+  resources :relationships, only: [:create, :destroy]  
+  
 end
 
   # doの後の get 'sessions/new'削除（7.2）
