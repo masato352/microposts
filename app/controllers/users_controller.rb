@@ -1,13 +1,23 @@
 class UsersController < ApplicationController
   def show # 追加
    @user = User.find(params[:id])
-   @microposts = @user.microposts.order(created_at: :desc)   
-  end  
-
-  def new
-    @user = User.new    
+   @microposts = @user.microposts.order(created_at: :desc)
   end
 
+  def show # 課題2で追加
+   @user = User.find(params[:id])
+    if @user == current_user
+      render 'profile'
+    else
+      redirect_to @user
+    end      
+  end
+
+  def new
+    @user = User.new
+    #@followings = Following.new    
+  end
+  
   def create
     @user = User.new(user_params)
     if @user.save
@@ -38,6 +48,12 @@ class UsersController < ApplicationController
       # 保存に失敗した場合は編集画面へ戻す
       render 'edit'
     end
+  end
+
+#課題2で追加
+  def followings
+   @user  = User.find(params[:id])
+   @followings = @user.following_users
   end
 
   private

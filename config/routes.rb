@@ -15,7 +15,17 @@ Rails.application.routes.draw do
   
   # 9.4
   resources :relationships, only: [:create, :destroy]  
+  # これではNG
+  #resources :followings
   
+  # メンバー追加
+  resources :users do
+  member do
+    get 'followings'
+    get 'followers'
+  end
+end
+
 end
 
   # doの後の get 'sessions/new'削除（7.2）
