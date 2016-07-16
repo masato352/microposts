@@ -1,0 +1,44 @@
+<h1>
+  <%= gravatar_for @user %>
+  <%= @user.name %>
+</h1>
+
+<div class="row">
+<h3>
+  <div class="form-group">
+    <label for="profile" class="control-label col-md-6" align="right">Profile:</label>
+      <div class="col-md-6">
+        <%= @user.profile %>
+      </div>
+  </div>
+</h3>
+<br>
+<h3>
+  <div class="form-group">
+    <label for="profile" class="control-label col-md-6" align="right">E-mail:</label>
+      <div class="col-md-6">
+        <%= @user.email %>
+      </div>
+  </div>
+</h3>
+<br>
+<h3>
+  <div class="form-group">
+    <label for="followings" class="control-label col-md-6" align="right">
+      <%= link_to "Followings", followings_user_path(current_user) %>
+    </label>
+          <div class="col-md-6">
+      </div>
+  </div>
+</h3>
+<br>
+<h3>
+  <div class="form-group">
+    <label for="followers" class="control-label col-md-6" align="right">
+      <%= link_to "Followers", followers_user_path(current_user) %>
+    </label>
+          <div class="col-md-6">
+      </div>
+  </div>  
+</h3>
+</div>
