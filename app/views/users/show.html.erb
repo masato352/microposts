@@ -9,11 +9,69 @@
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>    
-    <% if @user.microposts.any? %>
+    <!--% if @user.microposts.any? %　課題2にて削除--> 
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
-    <% end %>
+    <!--% end %-->
   </div>
+</div>
+
+
+<div class="row">
+<h3>
+  <div class="form-group">
+  <aside class="col-md-3"></aside>     
+    <label for="profile" class="control-label col-md-2" align="right">Profile:</label>
+      <div class="col-md-7">
+        <%= @user.profile %>
+      </div>
+  </div>
+</h3>
+<br>
+
+<h3>
+  <div class="form-group">
+  <aside class="col-md-3"></aside>
+    <label for="profile" class="control-label col-md-2" align="right">E-mail:</label>
+      <div class="col-md-7">
+        <%= @user.email %>
+      </div>
+  </div>
+</h3>
+<br>
+
+<h3>
+  <div class="form-group">
+  <aside class="col-md-3"></aside>
+    <label for="profile" class="control-label col-md-2" align="right">Area:</label>
+      <div class="col-md-7">
+        <%= @user.area %>
+      </div>
+  </div>
+</h3>
+<br>
+
+<h3>
+  <div class="form-group">
+  <aside class="col-md-3"></aside>
+    <label for="followings" class="control-label col-md-2" align="right">
+      <%= link_to "Followings", followings_user_path(@user) %>
+    </label>
+          <div class="col-md-7">
+      </div>
+  </div>
+</h3>
+<br>
+<h3>
+  <div class="form-group">
+  <aside class="col-md-3"></aside>    
+    <label for="followers" class="control-label col-md-2" align="right">
+      <%= link_to "Followers", followers_user_path(@user) %>
+    </label>
+          <div class="col-md-7">
+      </div>
+  </div>  
+</h3>
 </div>
