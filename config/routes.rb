@@ -15,14 +15,21 @@ Rails.application.routes.draw do
   
   # 9.4
   resources :relationships, only: [:create, :destroy]  
-  # これではNG
+ 
+ # これではNG
   #resources :followings
   
-  # メンバー追加
+  # 課題2メンバー追加
   resources :users do
   member do
     get 'followings'
     get 'followers'
+  end
+end
+
+  resources :users do
+  member do
+    get 'profiles'
   end
 end
 

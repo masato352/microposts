@@ -4,15 +4,6 @@ class UsersController < ApplicationController
    @microposts = @user.microposts.order(created_at: :desc)
   end
 
-  def show # 課題2で追加
-   @user = User.find(params[:id])
-    if @user == current_user
-      render 'profile'
-    else
-      redirect_to @user
-    end      
-  end
-
   def new
     @user = User.new
     #@followings = Following.new    
@@ -43,7 +34,8 @@ class UsersController < ApplicationController
     
     if @user.update(user_params)
       # 保存に成功した場合はトップページへリダイレクト
-      redirect_to @user , notice: 'プロフィールを編集しました'
+      # 2つめの課題でredirect_to @userをprofiles_user_path(current_user)に変更      
+      redirect_to profiles_user_path(current_user) , notice: 'プロフィールを編集しました'
     else
       # 保存に失敗した場合は編集画面へ戻す
       render 'edit'
@@ -59,6 +51,11 @@ class UsersController < ApplicationController
   def followers
    @user  = User.find(params[:id])
    @followers = @user.follower_users
+  end
+
+  def profiles # 課題2で追加,if分削除
+   @user = User.find(params[:id])
+      render 'profile'
   end
 
   private
