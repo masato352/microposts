@@ -8,13 +8,16 @@ Rails.application.routes.draw do
   
   get 'edit', to: 'sessions#edit'  
   
-  resources :users
+  #resources :users
   resources :sessions, only: [:new, :create, :edit, :destroy]  
 
   resources :microposts
   
   # 9.4
   resources :relationships, only: [:create, :destroy]  
+
+  # 機能拡張
+  resources :likes, only: [:create, :destroy]  
  
  # これではNG
   #resources :followings
@@ -24,14 +27,16 @@ Rails.application.routes.draw do
   member do
     get 'followings'
     get 'followers'
+    get 'profiles'
+    get 'favorites'
   end
 end
 
-  resources :users do
-  member do
-    get 'profiles'
-  end
-end
+#  resources :users do
+#  member do
+#    get 'profiles'
+#  end
+#end
 
 end
 

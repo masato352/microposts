@@ -7,6 +7,7 @@ before_action :logged_in_user, only: [:create, :destroy]
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else
+      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc) # この行を追加      
       render 'static_pages/home'
     end
   end

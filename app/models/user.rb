@@ -40,4 +40,31 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following_users.include?(other_user)
   end
+  
+  # 機能拡張（お気に入り）で追加
+  has_many :likes, 
+            dependent:   :destroy
+  has_many :favorite_microposts, through: :likes, source: :micropost 
+  
+  # like
+  def like(micropost)
+    likes.find_or_create_by(micropost_id: micropost.id)
+  end
+
+  # dislike
+  def dislike(micropost)
+    like = likes.find_by(micropost_id: micropost.id)
+    like.destroy if like
+  end  
+
+  # あるマイクロポストをフォローしているかどうか？
+  def like?(micropost)
+    favorite_microposts.include?(micropost)
+  end
+ 
+  # タイムラインを取得
+  def feed_items
+    Micropost.where(user_id: following_user_ids + [self.id])
+  end
+  
 end

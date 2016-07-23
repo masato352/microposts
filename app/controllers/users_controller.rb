@@ -57,6 +57,11 @@ class UsersController < ApplicationController
    @user = User.find(params[:id])
       render 'profile'
   end
+  
+  def favorites
+    @user = User.find(params[:id])
+    @microposts = @user.favorite_microposts
+  end
 
   private
 
